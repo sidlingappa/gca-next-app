@@ -1,0 +1,35 @@
+{
+  "name": "gca-next-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_EXTRA_CA_CERTS='gcaserver.crt' node server.js",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.10.5",
+    "@emotion/react": "^11.10.5",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.12",
+    "@types/node": "18.11.9",
+    "@types/react-dom": "18.0.8",
+    "express": "^4.18.2",
+    "express-actuator": "^1.8.2",
+    "classnames": "^2.3.2",
+    "js-cookie": "^3.0.1",
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "rxjs": "^7.5.7",
+    "swr": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "typescript": "^4.8.4"
+  }
+}
