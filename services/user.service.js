@@ -86,7 +86,7 @@ async function logout() {
     // ! move down if Drupal server use SSL !
     localStorage.removeItem("user");
     userSubject.next(null);
-    Router.push("/");
+    Router.push("/login");
 
     try {
         const request = await fetch(`${apiLink}/user/logout`, {
