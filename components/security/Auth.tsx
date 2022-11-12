@@ -9,7 +9,7 @@ import { userService } from '../../services';
 // @ts-ignore
 export default function Auth({ children, ...props }) {
     const [authorized, setAuthorized] = useState(false);
-    const [loading, setLoading] = useState(null);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const onRouteChangeStart = () => {
