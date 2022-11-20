@@ -41,12 +41,12 @@ const LoginPage = () => {
                 error.length > 0 ? <p className="text-sm">{error}</p> : ""
             }
             <Grid item={true} xs={10} sm={8} md={5}
-                  component={Paper} elevation={6} square  sx={{
+                  component={Paper} elevation={10} square  sx={{
                 borderRadius: 2,
                 p: 1,
                 padding:1,
-                marginX:50,
-                marginY:30,
+                marginX:5,
+                marginY:5,
             }}>
                 <div >
 
