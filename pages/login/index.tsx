@@ -28,12 +28,9 @@ const LoginPage = () => {
     }
 
     return (
-        <Grid container component="main">
+        <Grid container component="main" sx={{justifyContent: 'space-around'}}>
             <Grid item={true} container={true} xs={12} sm={4} md={7}  sx={{
                 borderRadius: 2,
-                p: 1,
-
-                float: "left"
             }} >
               {/* <iframe src="https://pages.spireon.com/kahu-login-01" frameBorder="none" className={classes.iframe} />*/}
             </Grid>
