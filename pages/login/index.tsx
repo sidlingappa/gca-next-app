@@ -1,7 +1,8 @@
-import { Grid, makeStyles, TextField, Button, Link, Paper } from "@mui/material";
-import { useRouter } from "next/router";
+import {Grid, TextField, Button, Link, Paper} from "@mui/material";
+import {useRouter} from "next/router";
 import React, {FormEvent, useRef, useState} from "react";
-import { userService } from '../../services';
+import {userService} from '../../services';
+
 const LoginPage = () => {
 
     const router = useRouter();
@@ -21,7 +22,7 @@ const LoginPage = () => {
             // Send the form data to our API and get a response.
             await userService.login(form.username.value as string, form.password.value as string);
             await router.push('/private');
-        }catch (err) {
+        } catch (err) {
             setError(err.message);
             console.error(err)
         }
@@ -29,25 +30,26 @@ const LoginPage = () => {
 
     return (
         <Grid container component="main" sx={{justifyContent: 'space-around'}}>
-            <Grid item={true} container={true} xs={12} sm={4} md={7}  sx={{
+            <Grid item={true} container={true} xs={12} sm={4} md={7} sx={{
                 borderRadius: 2,
-            }} >
-              {/* <iframe src="https://pages.spireon.com/kahu-login-01" frameBorder="none" className={classes.iframe} />*/}
+            }}>
+                {
+                    error.length > 0 ? <p className="text-sm">{error}</p> : ""
+                }
+                {/* <iframe src="https://pages.spireon.com/kahu-login-01" frameBorder="none" className={classes.iframe} />*/}
             </Grid>
-            {
-                error.length > 0 ? <p className="text-sm">{error}</p> : ""
-            }
+
             <Grid item={true} xs={10} sm={8} md={5}
-                  component={Paper} elevation={10} square  sx={{
+                  component={Paper} elevation={10} square sx={{
                 borderRadius: 2,
                 p: 1,
-                padding:1,
-                marginX:5,
-                marginY:5,
+                padding: 1,
+                marginX: 5,
+                marginY: 5,
             }}>
-                <div >
+                <div>
 
-                   {/* <Image
+                    {/* <Image
                         src="/images/login-logo.png"
                         alt="login"
                         width="321"
@@ -89,8 +91,8 @@ const LoginPage = () => {
                         >
                             Sign In
                         </Button>
-                        <Grid item={true}  xs={12} container>
-                            <Grid item >
+                        <Grid item={true} xs={12} container>
+                            <Grid item>
                                 <Link href="#" variant="body2">
                                     Forgot password?
                                 </Link>
@@ -102,5 +104,5 @@ const LoginPage = () => {
         </Grid>
     );
 };
-
+LoginPage.auth = false;
 export default LoginPage;
