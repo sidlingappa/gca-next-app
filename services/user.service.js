@@ -6,7 +6,7 @@ const httpsAgent = new https.Agent({
     rejectUnauthorized: false,
 });
 const userSubject = new BehaviorSubject(
-    process.browser && localStorage.getItem("user") !== undefined && JSON.parse(JSON.stringify(localStorage.getItem("user")))
+    process.browser && localStorage.getItem("user") !== undefined
 );
 
 export const userService = {
@@ -89,7 +89,7 @@ async function logout() {
     Router.push("/login");
 
     try {
-        const request = await fetch(`${apiLink}/user/logout`, {
+        const request = await fetch(`${apiLink}/users/logout`, {
             method: "GET",
             credentials: "include",
             headers: {

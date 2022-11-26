@@ -32,11 +32,12 @@ export default function Auth({ children, ...props }) {
     const authCheck = () => {
         if (userService.userValue) {
             // refresh session
-            fetch(`${apiLink}/user/${userService.userValue?.uid}?_format=json`, {
+            fetch(`${apiLink}/users/currentUser`, {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
+                    'asid-services-app': `${process.env.APP_TOKEN}`,
                     // 'X-CSRF-Token': userCert?.userData?.csrf_token
                 },
             })

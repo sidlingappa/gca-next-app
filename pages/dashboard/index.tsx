@@ -11,26 +11,18 @@ import Menu from '@mui/material/Menu';
 import { ButtonBase, Grid, Paper } from '@mui/material';
 import styled from '@emotion/styled';
 
+
+
 const Item = styled(Paper)(({ theme }) => ({
-<<<<<<< HEAD
-  backgroundColor: '#00977b',
-  textAlign: 'center',
-  margin: 5,
-  marginBottom: 10,
-  marginTop: 10,
-  paddingTop: 10,
-  color: '#FFF',
-=======
+
   backgroundColor:  '#ccc',
   padding:5,
   textAlign: 'center',
   margin: 5,
  // padding: 0,
   color: '#333',
->>>>>>> 35cb2246eaea79160bebbd335b4b2371dcbba81a
 }));
-
-export default function MenuAppBar() {
+ const Dashboard = () =>  {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -107,7 +99,7 @@ export default function MenuAppBar() {
             <Item>
               <img width='90%' alt="test" src="images/client-mangmt.png" />
               <p>Client Management</p>
-            </Item> 
+            </Item>
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
@@ -173,3 +165,5 @@ export default function MenuAppBar() {
     </Box>
   );
 }
+Dashboard.auth = true
+export default Dashboard
