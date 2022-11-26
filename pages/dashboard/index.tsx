@@ -12,6 +12,7 @@ import { ButtonBase, Grid, Paper } from '@mui/material';
 import styled from '@emotion/styled';
 
 const Item = styled(Paper)(({ theme }) => ({
+<<<<<<< HEAD
   backgroundColor: '#00977b',
   textAlign: 'center',
   margin: 5,
@@ -19,6 +20,14 @@ const Item = styled(Paper)(({ theme }) => ({
   marginTop: 10,
   paddingTop: 10,
   color: '#FFF',
+=======
+  backgroundColor:  '#ccc',
+  padding:5,
+  textAlign: 'center',
+  margin: 5,
+ // padding: 0,
+  color: '#333',
+>>>>>>> 35cb2246eaea79160bebbd335b4b2371dcbba81a
 }));
 
 export default function MenuAppBar() {
