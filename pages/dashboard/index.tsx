@@ -6,24 +6,21 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { ButtonBase, Grid, Paper } from '@mui/material';
 import styled from '@emotion/styled';
 
-
-
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor:  '#ccc',
-  padding: theme.spacing(5),
+  backgroundColor: '#00977b',
   textAlign: 'center',
   margin: 5,
-  padding: 0,
-  color: '#333',
+  marginBottom: 10,
+  marginTop: 10,
+  paddingTop: 10,
+  color: '#FFF',
 }));
+
 export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -42,18 +39,6 @@ export default function MenuAppBar() {
   
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -102,53 +87,77 @@ export default function MenuAppBar() {
           )}
         </Toolbar>
       </AppBar>
-      <Grid container  columns={{ xs: 4, sm: 8, md: 16 }}>
+      <Grid container  columns={{ xs: 4, sm: 8, md: 24 }}>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='100%' alt="test" src="https://www.lifecell.in/media/newsletter/medias/media/robotic-process-automation.png" />
-              <p>Test menu</p>
+              <img width='90%' alt="test" src="images/emp-mangmt.png" />
+              <p>Emp Management</p>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='100%' alt="test" src="https://www.lifecell.in/media/newsletter/medias/media/robotic-process-automation.png" />
-              <p>Test menu</p>
+              <img width='90%' alt="test" src="images/client-mangmt.png" />
+              <p>Client Management</p>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='100%' alt="test" src="https://www.lifecell.in/media/newsletter/medias/media/robotic-process-automation.png" />
-              <p>Test menu</p>
+              <img width='90%' alt="test" src="images/payrol-mangmt.png" />
+              <p>Payroll Management</p>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='100%' alt="test" src="https://www.lifecell.in/media/newsletter/medias/media/shutterstock_530884738_1_1_.jpg" />
-              <p>Test menu</p>
+              <img width='90%' alt="test" src="images/leave-mangmt.png" />
+              <p>Leave Management</p>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='100%' alt="test" src="https://www.lifecell.in/media/newsletter/medias/media/shutterstock_1725021514_1.jpg" />
-              <p>Test menu</p>
+              <img width='90%' alt="test" src="images/clocking-mangmt.png" />
+              <p>Clocking Management</p>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='100%' alt="test" src="https://www.lifecell.in/media/magefan_blog/1B2.jpg" />
-              <p>Test menu</p>
+              <img width='90%' alt="test" src="images/time-mangmt.png" />
+              <p>Time Management</p>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='100%' alt="test" src="https://www.lifecell.in/media/magefan_blog/need_for_cordblood_banking_Mobile2.jpg" />
-              <p>Test menu</p>
+              <img width='90%' alt="test" src="images/reporting.png" />
+              <p>Reporting</p>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='100%' alt="test" src="https://www.lifecell.in/media/magefan_blog/Community_Banking_Overview_Mobile2.jpg" />
-              <p>Test menu</p>
+              <img width='90%' alt="test" src="images/support.png" />
+              <p>Support</p>
+            </Item> 
+          </Grid>
+          <Grid xs={2} sm={4} md={4} lg={4}>
+            <Item>
+              <img width='90%' alt="test" src="images/admin.png" />
+              <p>Administration</p>
+            </Item> 
+          </Grid>
+          <Grid xs={2} sm={4} md={4} lg={4}>
+            <Item>
+              <img width='90%' alt="test" src="images/incident-mangmt.png" />
+              <p>Incident Management</p>
+            </Item> 
+          </Grid>
+          <Grid xs={2} sm={4} md={4} lg={4}>
+            <Item>
+              <img width='90%' alt="test" src="images/approvals.png" />
+              <p>Approvals</p>
+            </Item> 
+          </Grid>
+          <Grid xs={2} sm={4} md={4} lg={4}>
+            <Item>
+              <img width='90%' alt="test" src="images/client-mangmt.png" />
+              <p>Others</p>
             </Item> 
           </Grid>
       </Grid>
