@@ -42,7 +42,7 @@ export default function Auth({ children, ...props }) {
                 },
             })
                 .then(response => {
-                    if (response.status === 403 || response.status === 404) {
+                    if (response.status !== 200) {
                         Promise.reject('User unauthorized');
                         setAuthorized(false);
                         userService.logout();
