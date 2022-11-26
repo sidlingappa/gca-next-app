@@ -1,165 +1,103 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import { ButtonBase, Grid, Paper } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import styled from '@emotion/styled';
 import {NextPage} from "next";
+import NavBar from '../../components/navbar';
 
-
-
-const Item = styled(Paper)(({ theme }) => ({
-
-  backgroundColor:  '#ccc',
-  padding:5,
+const Typography = styled(Paper) ({
+  margin: 0.6,
+  marginLeft: 0,
+  marginRight: 0,
+  fontSize: 15,
+  padding: 5,
+  borderRadius: 1,
+  backgroundColor: '#a5247a',
+  color: '#FFF',
+  cursor: 'pointer',
+});
+const Item = styled(Paper) ({
+  backgroundColor:'#00977b',
   textAlign: 'center',
   margin: 5,
- // padding: 0,
-  color: '#333',
-}));
- const Dashboard: NextPage &{ auth?: boolean } = () =>  {
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAuth(event.target.checked);
-  };
-
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  
+  padding: 5,
+  color: '#FFF',
+});
+ const Dashboard: NextPage &{ auth?: boolean } = () =>  {  
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Photos
-          </Typography>
-          {auth && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
-          )}
-        </Toolbar>
-      </AppBar>
-      <Grid container  columns={{ xs: 4, sm: 8, md: 24 }}>
+    <NavBar></NavBar>
+      <Grid container sx={{marginTop: 10}} columns={{ xs: 4, sm: 8, md: 24 }}>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/emp-mangmt.png" />
-              <p>Emp Management</p>
+              <img width='99%' alt="test" src="images/emp-mangmt.png" />
+              <Typography>Emp Management</Typography>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/client-mangmt.png" />
-              <p>Client Management</p>
+              <img width='99%' alt="test" src="images/client-mangmt.png" />
+              <Typography>Client Management</Typography>
             </Item>
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/payrol-mangmt.png" />
-              <p>Payroll Management</p>
+              <img width='99%' alt="test" src="images/payrol-mangmt.png" />
+              <Typography>Payroll Management</Typography>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/leave-mangmt.png" />
-              <p>Leave Management</p>
+              <img width='99%' alt="test" src="images/leave-mangmt.png" />
+              <Typography>Leave Management</Typography>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/clocking-mangmt.png" />
-              <p>Clocking Management</p>
+              <img width='99%' alt="test" src="images/clocking-mangmt.png" />
+              <Typography>Clocking Management</Typography>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/time-mangmt.png" />
-              <p>Time Management</p>
+              <img width='99%' alt="test" src="images/time-mangmt.png" />
+              <Typography>Time Management</Typography>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/reporting.png" />
-              <p>Reporting</p>
+              <img width='99%' alt="test" src="images/reporting.png" />
+              <Typography>Reporting</Typography>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/support.png" />
-              <p>Support</p>
+              <img width='99%' alt="test" src="images/support.png" />
+              <Typography>Support</Typography>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/admin.png" />
-              <p>Administration</p>
+              <img width='99%' alt="test" src="images/admin.png" />
+              <Typography>Administration</Typography>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/incident-mangmt.png" />
-              <p>Incident Management</p>
+              <img width='99%' alt="test" src="images/incident-mangmt.png" />
+              <Typography>Incident Management</Typography>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/approvals.png" />
-              <p>Approvals</p>
+              <img width='99%' alt="test" src="images/approvals.png" />
+              <Typography>Approvals</Typography>
             </Item> 
           </Grid>
           <Grid xs={2} sm={4} md={4} lg={4}>
             <Item>
-              <img width='90%' alt="test" src="images/client-mangmt.png" />
-              <p>Others</p>
+              <img width='99%' alt="test" src="images/client-mangmt.png" />
+              <Typography>Others</Typography>
             </Item> 
           </Grid>
       </Grid>
