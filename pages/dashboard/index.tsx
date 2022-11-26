@@ -18,10 +18,10 @@ import styled from '@emotion/styled';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor:  '#ccc',
-  padding: theme.spacing(5),
+  padding:5,
   textAlign: 'center',
   margin: 5,
-  padding: 0,
+ // padding: 0,
   color: '#333',
 }));
 export default function MenuAppBar() {
