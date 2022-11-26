@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { ButtonBase, Grid, Paper } from '@mui/material';
 import styled from '@emotion/styled';
+import {NextPage} from "next";
 
 
 
@@ -22,7 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
  // padding: 0,
   color: '#333',
 }));
- const Dashboard = () =>  {
+ const Dashboard: NextPage &{ auth?: boolean } = () =>  {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 

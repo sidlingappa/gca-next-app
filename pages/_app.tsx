@@ -17,13 +17,11 @@ interface MyAppProps extends AppProps {
 export default function MyApp(props: MyAppProps) {
     const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
     // @ts-ignore
-    // @ts-ignore
-    return (
-
-
+    if (Component.auth) {
+        return (
             <CacheProvider value={emotionCache}>
                 {
-                    Component.auth ? <Auth>
+                    <Auth>
                         <Head>
                             <meta name="viewport" content="initial-scale=1, width=device-width"/>
                         </Head>
@@ -32,9 +30,17 @@ export default function MyApp(props: MyAppProps) {
                             <CssBaseline/>
                             <Component {...pageProps} />
                         </ThemeProvider>
-                    </Auth> : <Component {...pageProps} />
+                    </Auth>
                 }
             </CacheProvider>
-
-    );
+        );
+    } else {
+        return (
+            <CacheProvider value={emotionCache}>
+                {
+                    <Component {...pageProps} />
+                }
+            </CacheProvider>
+        );
+    }
 }

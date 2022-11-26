@@ -21,7 +21,7 @@ const LoginPage = () => {
         try {
             // Send the form data to our API and get a response.
             await userService.login(form.username.value as string, form.password.value as string);
-            await router.push('/private');
+            await router.push('/dashboard');
         } catch (err) {
             setError(err.message);
             console.error(err)
