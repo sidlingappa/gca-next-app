@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { apiLink } from '../../helpers'
+import {apiLink, appToken} from '../../helpers'
 import { useRouter } from 'next/router'
 import Spinner from '../Spinner/Spinner';
-
-import { userService } from '../../services';
-
+import https from "https";
 
 // @ts-ignore
 export default function Auth({ children, ...props }) {
@@ -30,37 +28,41 @@ export default function Auth({ children, ...props }) {
     }, [])
 
     const authCheck = () => {
-        if (userService.userValue) {
-            // refresh session
-            fetch(`${apiLink}/users/currentUser`, {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'asid-services-app': `${process.env.APP_TOKEN}`,
-                    // 'X-CSRF-Token': userCert?.userData?.csrf_token
-                },
-            })
-                .then(response => {
-                    if (response.status !== 200) {
-                        Promise.reject('User unauthorized');
-                        setAuthorized(false);
-                        userService.logout();
-                        router.push('/login');
-                    } else {
-                        setAuthorized(true);
-                    }
-                })
-                .finally(() => {
-                    setLoading(false);
-                })
-                .catch(error => { console.log(error) })
-        } else {
-            setAuthorized(false);
-            router.push('/login');
-        }
+        // if (localStorage.getItem("user") !== undefined) {
+             setAuthorized(true);
+        //     // refresh session
+        //     const httpsAgent = new https.Agent({
+        //         rejectUnauthorized: false,
+        //     });
+        //    const result = fetch(`/api/user/currentUser`, {
+        //         method: 'GET',
+        //         credentials: 'include',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             'asid-services-app': 'cd05f2b8-b222-4068-a78d-749fffeced76',
+        //             // 'X-CSRF-Token': userCert?.userData?.csrf_token
+        //         },
+        //         // @ts-ignore
+        //         agent: httpsAgent,
+        //     }).then(response => {
+        //             if (response.status !== 200) {
+        //                 setAuthorized(false);
+        //                 router.push('/login');
+        //             } else {
+        //                 setAuthorized(true);
+        //             }
+        //         }).finally(() => {
+        //             setLoading(false);
+        //         })
+        //         .catch(error => { console.log(error) })
+
+        // } else {
+        //     setAuthorized(false);
+        //     router.push('/login');
+        // }
+
     }
 
     if (!loading) return authorized ? children : <Spinner />
-    else return <Spinner />
+    else return <Spinner/>
 }

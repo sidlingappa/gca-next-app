@@ -2,6 +2,10 @@ import {Grid, TextField, Button, Link, Paper} from "@mui/material";
 import {useRouter} from "next/router";
 import React, {FormEvent, useRef, useState} from "react";
 import {userService} from '../../services';
+import {NextApiRequest, NextApiResponse} from "next";
+import {ApiResponse} from "../../dtos/ApiResponse";
+import {Role} from "../../dtos/Roles";
+import {useCookies} from "react-cookie"
 
 const LoginPage = () => {
 
@@ -10,6 +14,7 @@ const LoginPage = () => {
     const usernameInput = useRef<HTMLInputElement>();
     const passwordInput = useRef<HTMLInputElement>();
     const [error, setError] = useState("");
+    const [cookie, setCookie] = useCookies(["user"])
     const handleSubmit = async (event: FormEvent) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault()
@@ -17,11 +22,32 @@ const LoginPage = () => {
         // Cast the event target to an html form
         const form = event.target as HTMLFormElement
 
+        const username = usernameInput.current.value;
+        const password = passwordInput.current.value;
+
         // Get data from the form.
         try {
-            // Send the form data to our API and get a response.
-            await userService.login(form.username.value as string, form.password.value as string);
-            await router.push('/dashboard');
+
+            const result = await fetch(`/api/user/login`, {
+                credentials: "include",
+                method: "POST",
+                body: JSON.stringify({username, password}),
+
+            }).then(response => {
+                if (response.ok)
+                    return response.json()
+                else
+                    setError("Username or password is wrong");
+            }).then(function (result) {
+                // @ts-ignore
+                setCookie('remember-me', result.userToken, {
+                    path: "/",
+                    maxAge: 1209600, // Expires after 1hr
+                    sameSite: true,
+                });
+                router.push('/dashboard');
+            });
+
         } catch (err) {
             setError(err.message);
             console.error(err)

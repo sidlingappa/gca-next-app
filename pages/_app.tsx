@@ -9,6 +9,7 @@ import createEmotionCache from '../utility/createEmotionCache';
 import Auth from "../components/security/Auth";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
+import {CookiesProvider} from "react-cookie"
 
 interface MyAppProps extends AppProps {
     emotionCache?: EmotionCache;
@@ -20,20 +21,23 @@ export default function MyApp(props: MyAppProps) {
     return (
 
 
-            <CacheProvider value={emotionCache}>
-                {  // @ts-ignore
-                    Component.auth ? <Auth>
-                        <Head>
-                            <meta name="viewport" content="initial-scale=1, width=device-width"/>
-                        </Head>
-                        <ThemeProvider theme={theme}>
-                            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                            <CssBaseline/>
-                            <Component {...pageProps} />
-                        </ThemeProvider>
-                    </Auth> : <Component {...pageProps} />
-                }
-            </CacheProvider>
+        <CacheProvider value={emotionCache}>
+            {  // @ts-ignore
+                Component.auth ? <CookiesProvider>
+                        <Auth>
+                            <Head>
+                                <meta name="viewport" content="initial-scale=1, width=device-width"/>
+                            </Head>
+                            <ThemeProvider theme={theme}>
+                                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                                <CssBaseline/>
+                                <Component {...pageProps} />
+                            </ThemeProvider>
+                        </Auth>
+                </CookiesProvider> :
+                    <Component {...pageProps} />
+            }
+        </CacheProvider>
 
     );
 }
