@@ -30,11 +30,12 @@ const Item = styled(Paper)({
 
 const Dashboard: NextPage & { auth?: boolean } = () => {
     const router = useRouter();
+    const  userId = router.query;
     const [role, setRole] = useState<Role>(null)
     const [user, setUse] = useState(JSON.parse(localStorage.getItem("user")));
     useEffect(() => {
         const getUserRole = async () => {
-            const result = await fetch(`/api/roles/3`, {
+            const result = await fetch(`/api/user/${userId}`, {
                 method: "GET",
                 credentials: "include",
                 headers: {

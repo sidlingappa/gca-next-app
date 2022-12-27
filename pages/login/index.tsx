@@ -1,7 +1,6 @@
 import {Grid, TextField, Button, Link, Paper} from "@mui/material";
 import {useRouter} from "next/router";
 import React, {FormEvent, useRef, useState} from "react";
-import {userService} from '../../services';
 import {NextApiRequest, NextApiResponse} from "next";
 import {ApiResponse} from "../../dtos/ApiResponse";
 import {Role} from "../../dtos/Roles";
@@ -45,8 +44,12 @@ const LoginPage = () => {
                     maxAge: 1209600, // Expires after 1hr
                     sameSite: true,
                 });
-                router.push('/dashboard');
-            });
+                console.log("cookie"+result.userToken)
+                router.push({
+                    pathname:'/dashboard',
+                    query:result.userId
+                })
+            })
 
         } catch (err) {
             setError(err.message);

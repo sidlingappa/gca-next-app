@@ -5,6 +5,7 @@ import {serialize} from "cookie";
 
 export interface UserInfo {
     userToken: string;
+    userId :string
 }
 
 export const cookieOptions = {
@@ -73,8 +74,10 @@ export default async function handler(
 
             if (response.ok) {
                 let data = response.headers.get('Set-Cookie')?.split(";")[0]?.split("=")[1];
+                let loginUserId = response.headers.get('location')?.substring(response.headers.get('location').lastIndexOf("/")+1);
+                console.log('#########################'+loginUserId)
                 //setAPICookie(res, 'userToken', data, cookieOptions);
-                return res.status(200).json( {userToken:data});
+                return res.status(200).json( {userToken:data,userId:loginUserId});
             } else {
                 const jsonData = await response.json();
                 return res.status(response.status).setHeader("set-cookie", response.headers.get('Set-Cookie')).json(jsonData)
