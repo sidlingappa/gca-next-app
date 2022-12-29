@@ -17,7 +17,7 @@ export default async function handler(
     }
 }
 
-async function getUser(req: NextApiRequest, res: NextApiResponse<ApiResponse<Role>>, userId: string | string[]) {
+async function getUser(req: NextApiRequest, res: NextApiResponse<ApiResponse<User>>, userId: string | string[]) {
     try {
       //  console.log(`${appToken}`)
       //  console.log(req.headers.cookie)
