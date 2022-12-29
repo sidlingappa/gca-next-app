@@ -17,7 +17,6 @@ export class User {
     lastModifiedOn:Date;
     passwordUpdated:boolean;
     phoneNumbers:[];
-    roles:[];
     terminationDate:Date;
     timeZone:string;
     version:bigint;
