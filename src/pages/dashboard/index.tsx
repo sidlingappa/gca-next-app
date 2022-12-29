@@ -6,7 +6,7 @@ import {NextPage, NextPageContext} from "next";
 import NavBar from '../../components/NavBar';
 import {useEffect, useState} from "react";
 import {Role, getAccess} from "../../dtos/Roles";
-import {User} from "../../dtos/User";
+import {User,getRoleId} from "../../dtos/User";
 import {useRouter} from "next/router";
 
 const Typography = styled(Paper)({
@@ -32,11 +32,10 @@ const Dashboard: NextPage & { auth?: boolean } = () => {
     const router = useRouter();
     const  {userId} = router.query;
     const [role, setRole] = useState<Role>(null)
-       const [user, setUser] = useState<User>(null)
+    const [user, setUser] = useState<User>(null)
+     const [loginInfo, setLoginInfo] = useState({user:null,role:null})
    // const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-
-    useEffect(() => {
-        const getUserRole = async () => {
+    const getUserInfo = async () => {
             const result = await fetch(`/api/user/`+userId, {
                 method: "GET",
                 credentials: "include",
@@ -48,13 +47,35 @@ const Dashboard: NextPage & { auth?: boolean } = () => {
             const data = await result.json()
             if (result.ok) {
              //   console.log("APP_TOKEN " + data['response']['results'][0])
-                setUser(data['response']['results'][0])
+                setUser(data['response']['results'][0]?.user)
+                getUserRole(data['response']['results'][0]?.user)
             } else {
                 router.push("/login")
             }
         }
-        getUserRole();
-
+        const getUserRole = async (user) => {
+                    let roleId = getRoleId(user);
+                    const result = await fetch(`/api/roles/`+roleId, {
+                        method: "GET",
+                        credentials: "include",
+                        headers: {
+                            "Content-Type": "application/json",
+                            'asid-services-app': `cd05f2b8-b222-4068-a78d-749fffeced76`
+                        }
+                    })
+                    const data = await result.json()
+                    if (result.ok) {
+                     //   console.log("APP_TOKEN " + data['response']['results'][0])
+                        setRole(data['response']['results'][0]?.role)
+                        loginInfo.user =user;
+                        loginInfo.role =role;
+                        window.localStorage.setItem('loginInfo', JSON.stringify(loginInfo))
+                    } else {
+                        router.push("/login")
+                    }
+                }
+    useEffect(() => {
+        getUserInfo();
     }, [])
 
     return (

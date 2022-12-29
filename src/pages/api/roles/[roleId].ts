@@ -20,7 +20,7 @@ export default async function handler(
 async function getRole(req: NextApiRequest, res: NextApiResponse<ApiResponse<Role>>, roleId: string | string[]) {
     try {
       //  console.log(`${appToken}`)
-        console.log(req.headers.cookie)
+        //console.log(req.headers.cookie)
         const httpsAgent = new https.Agent({
             rejectUnauthorized: false,
         });
