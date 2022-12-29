@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import {Grid, Paper} from '@mui/material';
 import styled from '@emotion/styled';
 import {NextPage, NextPageContext} from "next";
-import NavBar from '../../components/NavBar';
+import NavBar from '../../components/navbar';
 import {useEffect, useState} from "react";
 import {Role, getAccess} from "../../dtos/Roles";
 import {User,getRoleId} from "../../dtos/User";
