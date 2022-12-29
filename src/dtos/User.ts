@@ -21,15 +21,15 @@ export class User {
     timeZone:string;
     version:bigint;
 }
-export function getRoleId(user: User): bigint {
+export function getRoleId(user: User): number {
  const userInfo = JSON.parse(JSON.stringify(user));
  const role = userInfo?.roles[0];
  if(role === undefined){
-    return 0n;
+    return 0;
  }else {
   let url = role?.href;
   console.log(url);
-  return BigInt(url?.substring(url?.lastIndexOf('/')+1));
+  return url?.substring(url?.lastIndexOf('/')+1);
  }
 
 }
