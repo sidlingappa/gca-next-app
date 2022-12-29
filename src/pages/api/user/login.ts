@@ -75,7 +75,7 @@ export default async function handler(
             if (response.ok) {
                 let data = response.headers.get('Set-Cookie')?.split(";")[0]?.split("=")[1];
                 let loginUserId = response.headers.get('location')?.substring(response.headers.get('location').lastIndexOf("/")+1);
-                console.log('#########################'+loginUserId)
+               // console.log('#########################'+loginUserId)
                 //setAPICookie(res, 'userToken', data, cookieOptions);
                 return res.status(200).json( {userToken:data,userId:loginUserId});
             } else {

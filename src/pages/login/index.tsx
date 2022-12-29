@@ -44,10 +44,10 @@ const LoginPage = () => {
                     maxAge: 1209600, // Expires after 1hr
                     sameSite: true,
                 });
-                console.log("cookie"+result.userToken)
+                //console.log("cookie"+result.userToken)
                 router.push({
                     pathname:'/dashboard',
-                    query:result.userId
+                    query:{userId:result.userId}
                 })
             })
 

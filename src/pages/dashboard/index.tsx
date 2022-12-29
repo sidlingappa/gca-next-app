@@ -6,7 +6,7 @@ import {NextPage, NextPageContext} from "next";
 import NavBar from '../../components/NavBar';
 import {useEffect, useState} from "react";
 import {Role, getAccess} from "../../dtos/Roles";
-
+import {User} from "../../dtos/User";
 import {useRouter} from "next/router";
 
 const Typography = styled(Paper)({
@@ -30,12 +30,14 @@ const Item = styled(Paper)({
 
 const Dashboard: NextPage & { auth?: boolean } = () => {
     const router = useRouter();
-    const  userId = router.query;
+    const  {userId} = router.query;
     const [role, setRole] = useState<Role>(null)
-    const [user, setUse] = useState(JSON.parse(localStorage.getItem("user")));
+       const [user, setUser] = useState<User>(null)
+   // const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
     useEffect(() => {
         const getUserRole = async () => {
-            const result = await fetch(`/api/user/${userId}`, {
+            const result = await fetch(`/api/user/`+userId, {
                 method: "GET",
                 credentials: "include",
                 headers: {
@@ -46,7 +48,7 @@ const Dashboard: NextPage & { auth?: boolean } = () => {
             const data = await result.json()
             if (result.ok) {
              //   console.log("APP_TOKEN " + data['response']['results'][0])
-                setRole(data['response']['results'][0])
+                setUser(data['response']['results'][0])
             } else {
                 router.push("/login")
             }
