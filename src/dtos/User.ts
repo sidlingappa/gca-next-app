@@ -1,7 +1,7 @@
 
 
 export class User {
-    id: bigint;
+    id: number;
     username: string;
     roles:[];
     account:any;
@@ -19,7 +19,7 @@ export class User {
     phoneNumbers:[];
     terminationDate:Date;
     timeZone:string;
-    version:bigint;
+    version:number;
 }
 export function getRoleId(user: User): bigint {
  const userInfo = JSON.parse(JSON.stringify(user));
