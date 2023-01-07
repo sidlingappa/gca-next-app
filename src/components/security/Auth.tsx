@@ -28,6 +28,7 @@ export default function Auth({ children, ...props }) {
     }, [])
 
     const authCheck = () => {
+   // console.log("hhhhhhhhhhhhhhhhh")
         // if (localStorage.getItem("user") !== undefined) {
              setAuthorized(true);
         //     // refresh session

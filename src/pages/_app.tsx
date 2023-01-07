@@ -24,7 +24,7 @@ export default function MyApp(props: MyAppProps) {
         <CacheProvider value={emotionCache}>
             {  // @ts-ignore
                 Component.auth ? <CookiesProvider>
-                        <Auth>
+
                             <Head>
                                 <meta name="viewport" content="initial-scale=1, width=device-width"/>
                             </Head>
@@ -33,7 +33,7 @@ export default function MyApp(props: MyAppProps) {
                                 <CssBaseline/>
                                 <Component {...pageProps} />
                             </ThemeProvider>
-                        </Auth>
+                       
                 </CookiesProvider> :
                     <Component {...pageProps} />
             }

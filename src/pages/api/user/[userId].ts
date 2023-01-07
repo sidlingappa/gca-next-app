@@ -2,6 +2,7 @@ import {NextApiRequest, NextApiResponse} from "next";
 import {User} from "../../../dtos/User";
 import {ApiResponse} from "../../../dtos/ApiResponse";
 import {apiLink, appToken, getUserCookie} from "../../../helpers";
+import {RestUtils} from "../../../utility/RestUtils"
 import {serialize,parse} from "cookie";
 import https from "https";
 export default async function handler(
@@ -12,11 +13,24 @@ export default async function handler(
     switch (req.method) {
         case 'GET':
             return getUser(req, res, userId)
+        case 'PUT':
+                return updateUser(req, res, userId)
         default:
             return res.status(501).end()
     }
 }
-
+async function updateUser(req: NextApiRequest, res: NextApiResponse<ApiResponse<User>>, userId: string | string[]) {
+    try {
+        const request = RestUtils.createPutRequest(req,`${apiLink}/users/` + userId)
+        const response: Response = await fetch(request)
+        const json = await response.json()
+        return res.status(response.status).send(json)
+    }catch (err) {
+         console.log('get user ' + userId + ' error')
+         console.log(err)
+         return res.status(500).end()
+     }
+}
 async function getUser(req: NextApiRequest, res: NextApiResponse<ApiResponse<User>>, userId: string | string[]) {
     try {
       //  console.log(`${appToken}`)

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from "react";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -7,16 +7,41 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-
+import {useRouter} from "next/router";
+import {useCookies} from "react-cookie"
 const NavBar = () =>  {
+const [cookie, setCookie,removeCookie] = useCookies(["user"])
+ const router = useRouter();
 const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
+    const [error, setError] = useState("");
 const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
 };
-
 const handleClose = () => {
     setAnchorEl(null);
+      const result = fetch(`/api/user/logout`, {
+                    credentials: "include",
+                    method: "GET"
+                }).then(response => {
+                }).then(response => {
+                    if (response?.ok)
+                        return response.json()
+                    else
+                        setError("Username or password is wrong");
+                }).then(function (result) {
+                    // @ts-ignore
+                    removeCookie('remember-me');
+                    router.push('/login')
+                })
+};
+const handleProfile = () => {
+   setAnchorEl(null);
+   router.push({
+                                   pathname:'/profile'
+                               },undefined,{shallow: true })
+};
+const handleHome = () => {
+   router.push('/dashboard')
 };
 return (  
     <AppBar position="fixed">
@@ -30,7 +55,7 @@ return (
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 ,cursor:'pointer'}} onClick={handleHome} >
             GPS
           </Typography>
               <IconButton
@@ -58,8 +83,8 @@ return (
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
               </Menu>
         </Toolbar>
       </AppBar>

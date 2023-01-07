@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 import {Role, getAccess} from "../../dtos/Roles";
 import {User,getRoleId} from "../../dtos/User";
 import {useRouter} from "next/router";
-
+import { mutate } from 'swr'
 const Typography = styled(Paper)({
     margin: 0.6,
     marginLeft: 0,
@@ -36,6 +36,10 @@ const Dashboard: NextPage & { auth?: boolean } = () => {
      const [loginInfo, setLoginInfo] = useState({user:null,role:null})
    // const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
     const getUserInfo = async () => {
+        if (userId == undefined){
+            const value = window.localStorage.getItem("loginInfo");
+            userId = JSON.parse(value)?.user.id;
+        }
             const result = await fetch(`/api/user/`+userId, {
                 method: "GET",
                 credentials: "include",
@@ -48,6 +52,7 @@ const Dashboard: NextPage & { auth?: boolean } = () => {
             if (result.ok) {
              //   console.log("APP_TOKEN " + data['response']['results'][0])
                 setUser(data['response']['results'][0]?.user)
+                 mutate('user', data['response']['results'][0]?.user)
                 getUserRole(data['response']['results'][0]?.user)
             } else {
                 router.push("/login")
@@ -67,9 +72,11 @@ const Dashboard: NextPage & { auth?: boolean } = () => {
                     if (result.ok) {
                      //   console.log("APP_TOKEN " + data['response']['results'][0])
                         setRole(data['response']['results'][0]?.role)
+                        mutate('role',data['response']['results'][0]?.role)
                         loginInfo.user =user;
-                        loginInfo.role =role;
+                        loginInfo.role =data['response']['results'][0]?.role;
                         window.localStorage.setItem('loginInfo', JSON.stringify(loginInfo))
+                        mutate('loginInfo',loginInfo)
                     } else {
                         router.push("/login")
                     }
