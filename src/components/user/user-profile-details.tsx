@@ -1,7 +1,6 @@
 import { useState ,useEffect } from 'react';
 import { Avatar,Typography,CardActions,Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material';
 import {Role, getAccess} from "../../dtos/Roles";
-import { UserProfile } from './user-profile';
 import {User} from "../../dtos/User";
 import { mutate } from 'swr'
 import { useForm, Controller, useFieldArray } from "react-hook-form";

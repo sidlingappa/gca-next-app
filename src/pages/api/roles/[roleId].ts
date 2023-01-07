@@ -1,7 +1,7 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {Role} from "../../../dtos/Roles";
 import {ApiResponse} from "../../../dtos/ApiResponse";
-import {apiLink, appToken, getUserCookie} from "../../../helpers";
+import {apiLink, appToken} from "../../../helpers";
 import {serialize,parse} from "cookie";
 import https from "https";
 export default async function handler(

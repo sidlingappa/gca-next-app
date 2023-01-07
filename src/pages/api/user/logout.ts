@@ -14,7 +14,7 @@ export default async function handler(
             return res.status(501).end()
     }
    async function logout(req: NextApiRequest,
-                         res: NextApiResponse<UserInfo>) {
+                         res: NextApiResponse) {
         const httpsAgent = new https.Agent({
             rejectUnauthorized: false,
         });

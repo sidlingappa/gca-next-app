@@ -2,10 +2,13 @@ import Head from 'next/head';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { UserProfileDetails } from '../../components/user/user-profile-details';
 import NavBar from '../../components/navbar';
+import {NextPage, NextPageContext} from "next";
 import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 import {Role, getAccess} from "../../dtos/Roles";
 import { mutate } from 'swr'
 const Profile: NextPage & { auth?: boolean } = () => {
+  const router = useRouter();
    const [user, setUser] = useState(null);
    const [role, setRole] = useState<Role>(null);
 

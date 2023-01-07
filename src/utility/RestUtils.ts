@@ -4,20 +4,21 @@ import https from "https";
 export class RestUtils {
 
   static createPostRequest(req: NextApiRequest, url: string): Request {
- const httpsAgent = new https.Agent({
+        const httpsAgent = new https.Agent({
             rejectUnauthorized: false,
         });
-   return new Request(url, {
-      method: 'POST',
-      body: JSON.stringify(req.body),
-      credentials: "include",
-      headers: {
-         'Content-Type': 'application/json',
-         'asid-services-app': `${appToken}`,
-         Cookie: req.headers.cookie
-      },
-      agent: httpsAgent,
-    });
+       return new Request(url, {
+          method: 'POST',
+          body: JSON.stringify(req.body),
+          credentials: "include",
+          headers: {
+             'Content-Type': 'application/json',
+             'asid-services-app': `${appToken}`,
+             Cookie: req.headers.cookie
+          },
+          // @ts-ignore
+          agent: httpsAgent,
+        });
   }
 
   static createPutRequest(req: NextApiRequest, url: string): Request {
@@ -33,6 +34,7 @@ export class RestUtils {
            'asid-services-app': `${appToken}`,
            Cookie: req.headers.cookie
         },
+        // @ts-ignore
         agent: httpsAgent,
     });
   }
@@ -49,6 +51,7 @@ export class RestUtils {
            'asid-services-app': `${appToken}`,
            Cookie: req.headers.cookie
         },
+        // @ts-ignore
         agent: httpsAgent,
     });
   }

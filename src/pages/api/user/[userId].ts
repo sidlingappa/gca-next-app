@@ -1,7 +1,7 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {User} from "../../../dtos/User";
 import {ApiResponse} from "../../../dtos/ApiResponse";
-import {apiLink, appToken, getUserCookie} from "../../../helpers";
+import {apiLink, appToken} from "../../../helpers";
 import {RestUtils} from "../../../utility/RestUtils"
 import {serialize,parse} from "cookie";
 import https from "https";

@@ -19,10 +19,12 @@ const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
 };
 const handleClose = () => {
     setAnchorEl(null);
+    }
+const handleLogOut = () => {
+    setAnchorEl(null);
       const result = fetch(`/api/user/logout`, {
                     credentials: "include",
                     method: "GET"
-                }).then(response => {
                 }).then(response => {
                     if (response?.ok)
                         return response.json()
@@ -84,7 +86,7 @@ return (
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleProfile}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleLogOut}>Logout</MenuItem>
               </Menu>
         </Toolbar>
       </AppBar>

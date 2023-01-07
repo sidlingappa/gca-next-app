@@ -30,7 +30,7 @@ const Item = styled(Paper)({
 
 const Dashboard: NextPage & { auth?: boolean } = () => {
     const router = useRouter();
-    const  {userId} = router.query;
+    let  {userId} = router.query;
     const [role, setRole] = useState<Role>(null)
     const [user, setUser] = useState<User>(null)
      const [loginInfo, setLoginInfo] = useState({user:null,role:null})
