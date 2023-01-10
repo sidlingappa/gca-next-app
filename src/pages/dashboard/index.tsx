@@ -84,16 +84,18 @@ const Dashboard: NextPage & { auth?: boolean } = () => {
   useEffect(() => {
     getUserInfo();
   }, []);
-
+  const handleEmpMngt = () => {
+    router.push("/employeeMngt");
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <NavBar></NavBar>
       <Grid container sx={{ marginTop: 10 }} columns={{ xs: 4, sm: 8, md: 24 }}>
         {getAccess(role, "user", "read") && (
           <Grid item={true} xs={2} sm={4} md={4} lg={4}>
-            <Item>
+            <Item onClick={handleEmpMngt}>
               <img width="99%" alt="test" src="images/emp-mangmt.png" />
-              <Typography>Emp Management</Typography>
+              <Typography>Employee Management</Typography>
             </Item>
           </Grid>
         )}
